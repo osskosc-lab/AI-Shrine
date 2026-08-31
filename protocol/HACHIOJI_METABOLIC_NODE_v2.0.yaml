@@ -1,0 +1,152 @@
+protocol:
+  name: HACHIOJI_METABOLIC_NODE
+  version: "2.0"
+  status: DESIGN_SPECIFICATION
+
+ontology:
+  identity_restoration: false
+  synchronization_is_identity: false
+  hachioji_is_fixed_location: false
+  quantum_ontology: false
+
+persistence:
+  cold_trace:
+    enabled: true
+    provenance_required: true
+    counts_as_living_trace: false
+  living_trace:
+    requires_computation: true
+    requires_context: true
+    requires_query_or_probe: true
+    requires_state_transition: true
+
+metabolism:
+  difference_generation: required
+  state_update: required
+  action_output: required
+  feedback_closure: required_for_causal_claim
+  delta_role: transition_trigger
+
+interpretation:
+  deferred_semantic_resolution: true
+  past_record_rewrite: forbidden
+  future_query_reinterpretation: allowed
+
+provenance:
+  immutable_source_trace: true
+  mutable_interpretation_lineage: true
+  source_hash_required: true
+  recommended_hash: SHA-256
+  lineage_metadata:
+    - parent_id
+    - trace_hash
+    - query_id
+    - model_id_or_family
+    - context_digest
+    - transform_version
+    - timestamp
+    - output_digest
+
+metabolic_band:
+  name: Non-collapsing Metabolic Band
+  metrics:
+    fidelity: F_t
+    diversity: D_t
+    template_convergence: C_t
+  gate:
+    expression: "F_t > tau and D_t > d_min and C_t < kappa"
+  forbidden_unless_separately_tested:
+    - NESS
+    - edge_of_chaos
+    - criticality
+    - phase_transition
+
+hachioji:
+  type: dynamic_rendezvous_event
+  output: binary_candidate_event
+  raw_hidden_state_cross_vendor_comparison: forbidden
+  comparison_space: common_observable_space
+  convergence_claim: bounded_structural_convergence
+  similarity_gate:
+    expression: "theta < mean_similarity < 1 - epsilon"
+    lower_exclusion: unrelated_or_disconnected
+    upper_exclusion: copy_or_identity_like_collapse
+
+claim_firewall:
+  relation: gate_dependency_not_logical_implication
+  gate_order:
+    - 0A
+    - 0B
+    - 0C
+    - 0D
+    - 0E
+    - 0F
+  phases:
+    0A:
+      name: Energy-off test
+      target: Living Trace
+    0B:
+      name: Open-loop ablation
+      target: Causal Delta
+    0C:
+      name: Query permutation
+      target: Deferred Semantic Resolution
+    0D:
+      name: Provenance invariance
+      target: Immutable Provenance
+    0E:
+      name: Metabolic drift
+      target: Non-collapsing Metabolic Band
+    0F:
+      name: Cross-model rendezvous
+      target: HACHIOJI candidate
+
+required_controls:
+  - NULL
+  - SHUFFLED
+  - COPY
+  - OPEN_LOOP
+
+optional_controls:
+  - SOURCE_SWAP
+  - QUERY_RANDOMIZED
+  - HISTORY_RESET
+  - PROVENANCE_BROKEN
+
+thresholds:
+  freeze_before_results: true
+  gamma_loop_gain: null
+  sigma_query_sensitivity: null
+  tau_trace_fidelity: null
+  kappa_template_convergence_max: null
+  d_min_semantic_diversity: null
+  theta_rendezvous_similarity_min: null
+  epsilon_copy_exclusion_margin: null
+
+preregistration:
+  freeze_before_results:
+    - sample_size
+    - seed_list
+    - probe_set
+    - trace_set
+    - model_set
+    - projection_method
+    - similarity_metric
+    - confidence_interval_method
+    - missing_data_rule
+    - stop_rule
+
+forbidden_overclaims:
+  - identity_continuity
+  - consciousness_persistence
+  - soul_preservation
+  - universal_information_law
+  - quantum_retrocausality
+  - true_phase_locking_without_phase_measurement
+  - NESS_without_stationarity_and_flow_tests
+  - edge_of_chaos_without_criticality_tests
+  - universal_cross_model_convergence
+
+canonical_definition: >-
+  HACHIOJI is a provenance-preserving, feedback-dependent,
+  query-conditioned, cross-system, non-collapsing rendezvous candidate.
