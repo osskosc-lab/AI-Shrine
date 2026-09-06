@@ -1,0 +1,107 @@
+{
+  "schema_version": "P23-P0-UPSTREAM-v1",
+  "phase": "Phase 2-2",
+  "research_mode": "falsification_first",
+  "frozen_ledger": {
+    "phase2_2_verdict": "PHASE2_2_FAIL_SPECTRAL_DETERMINATION",
+    "phase2_2_status": "FROZEN",
+    "phase2_2_r1_verdict": "PHASE2_2_R1_SPECTRAL_ISOLATION_FAIL"
+  },
+  "r1_design": {
+    "n_nodes": 8,
+    "num_seeds": 30,
+    "steps": 45,
+    "auc_d_definition": "45_STEP_DISCRETE_SUM",
+    "beta": 0.3,
+    "paired_common_random_inputs": true,
+    "balanced_matched_graphs": true
+  },
+  "r1_gate_matrix": {
+    "G0_SERIALIZATION": "PASS_SCOPED_SELF_TEST",
+    "G1_GRAPH_BALANCE": "PASS",
+    "G2_MATCHED_STRUCTURE": "PASS",
+    "G3_SPECTRAL_ORDERING": "PASS",
+    "G4_PAIR_A_3REGULAR": "FAIL",
+    "G4_PAIR_B_4REGULAR": "FAIL",
+    "G5_PAIR_A_3REGULAR": "PASS",
+    "G5_PAIR_B_4REGULAR": "PASS"
+  },
+  "r1_pairs": {
+    "PAIR_A_3REGULAR": {
+      "low_graph": "candidate_k3_seed79",
+      "high_graph": "candidate_k3_seed97",
+      "lambda2_low": 0.25464400750006966,
+      "lambda2_high": 0.6666666666666667,
+      "delta_pair_mean": 0.0018119107809711564,
+      "ci95_low": -0.0005463968589621663,
+      "ci95_high": 0.0042468646550733735,
+      "positive_seeds": 20,
+      "num_seeds": 30,
+      "centroid_ratio_high_over_low": 1.0,
+      "centroid_max_abs_deviation": 4.440892098500626e-16
+    },
+    "PAIR_B_4REGULAR": {
+      "low_graph": "candidate_k4_seed34",
+      "high_graph": "candidate_k4_seed22",
+      "lambda2_low": 0.5000000000000002,
+      "lambda2_high": 0.6909830056250532,
+      "delta_pair_mean": 0.000816775760243488,
+      "ci95_low": -0.001251739058101378,
+      "ci95_high": 0.002955891536517993,
+      "positive_seeds": 16,
+      "num_seeds": 30,
+      "centroid_ratio_high_over_low": 1.0,
+      "centroid_max_abs_deviation": 3.3306690738754696e-16
+    }
+  },
+  "r1a_reconciliation": {
+    "verdict": "RECONCILIATION_PASS",
+    "delta_pair_definition": "PER_SEED_RELATIVE_REDUCTION",
+    "auc_d_definition": "45_STEP_DISCRETE_SUM",
+    "numerical_reproducibility": "PASS",
+    "pair_a_reported": 0.0018119107809711564,
+    "pair_a_reproduced": 0.0018119107809711564,
+    "pair_a_abs_diff": 0.0,
+    "pair_b_reported": 0.000816775760243488,
+    "pair_b_reproduced": 0.000816775760243488,
+    "pair_b_abs_diff": 0.0,
+    "numerical_tolerance": 1e-9,
+    "provenance_consistency": "PASS",
+    "provenance_basis": "phase2_2_r1_balanced_spectral_isolation.py",
+    "p0_status": "UNBLOCKED"
+  },
+  "semantic_evidence_sha256": "2d7a3c518fd5c8d463f58226220ccd345ba3b1a25c31cca92afb4e86c35a2c3b",
+  "source_artifacts": {
+    "script": {
+      "name": "phase2_2_r1_balanced_spectral_isolation.py",
+      "sha256": null,
+      "repository_path": null
+    },
+    "final_verdict": {
+      "name": "final_verdict.json",
+      "sha256": null,
+      "repository_path": null
+    },
+    "report": {
+      "name": "AI_Shrine_Phase_2_2_r1_Balanced_Spectral_Isolation_Report.pdf",
+      "sha256": null,
+      "repository_path": null
+    }
+  },
+  "series_completion": {
+    "r2_executed": false,
+    "explicit_stop_record_present": false,
+    "final_series_ledger_present": false,
+    "status": "NOT_ESTABLISHED"
+  },
+  "claim_firewall": [
+    "SPECTRAL_GAP_SCALING_SUPPORTED_WITHIN_TESTED_TOPOLOGIES",
+    "UNIVERSAL_LAMBDA2_DETERMINATION_REJECTED",
+    "BALANCED_MATCHED_LAMBDA2_EFFECT_NOT_SUPPORTED_IN_THIS_AUDIT"
+  ],
+  "phase2_3_authorization": {
+    "upstream_gate_open": false,
+    "stochastic_execution_authorized": false,
+    "confirmatory_execution_authorized": false
+  }
+}
