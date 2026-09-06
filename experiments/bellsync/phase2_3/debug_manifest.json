@@ -5,9 +5,21 @@
   "graph": {
     "id": "P3_GOLDEN",
     "adjacency": [
-      [0.0, 1.0, 0.0],
-      [1.0, 0.0, 1.0],
-      [0.0, 1.0, 0.0]
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0
+      ]
     ]
   },
   "parameters": {
@@ -15,22 +27,37 @@
     "perturbation_delta": 0.0001,
     "local_jacobian": 0.9,
     "clip_enabled": false,
-    "clip_bounds": [-10.0, 10.0],
+    "clip_bounds": [
+      -10,
+      10
+    ],
     "linearization_relative_tolerance": 0.0001,
     "saturation_abs_edge_threshold": 0.5
   },
   "qualification": {
-    "mode_numbers": [2, 3],
+    "mode_numbers": [
+      2,
+      3
+    ],
     "spectrum_tolerance": 1e-10,
     "injection_tolerance": 1e-10,
     "reconstruction_tolerance": 1e-10,
-    "replay_tolerance": 0.0
+    "replay_tolerance": 0
   },
   "seed_namespace": "AI_SHRINE_BELLSYNC_P23_DEBUG",
-  "seed_list": [230001],
+  "seed_list": [
+    230001
+  ],
   "upstream_gate": {
     "phase2_2_required": true,
-    "status": "NOT_VERIFIED_IN_REPOSITORY"
+    "verifier": "p23_upstream.py",
+    "ledger": "upstream_phase2_2_ledger.json",
+    "r1a_evidence_status": "VERIFIED_BY_P23_P0",
+    "status": "P23_P0_PARTIAL_PASS_BLOCKED",
+    "remaining_requirements": [
+      "PHASE2_2_R2_OR_EXPLICIT_STOP_RECORD",
+      "PHASE2_2_FINAL_SERIES_LEDGER"
+    ]
   },
   "execution_authorization": {
     "debug_qualification": true,

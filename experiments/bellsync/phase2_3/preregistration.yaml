@@ -1,14 +1,15 @@
 protocol:
   name: BellSync Phase 2.3
   subtitle: Spectral Mode Causality Audit
-  status: DEBUG_QUALIFICATION_ONLY
+  status: DEBUG_QUALIFICATION_PLUS_UPSTREAM_IMPORT
   production_execution: BLOCKED
 
 claim_firewall:
   debug_qualified_does_not_imply_mechanism_pass: true
+  upstream_r1a_reconciliation_does_not_imply_phase2_2_series_complete: true
   stochastic_execution_authorized: false
   confirmatory_execution_authorized: false
-  phase2_2_ledger_required_before_production: true
+  phase2_2_final_ledger_required_before_production: true
 
 debug_gates:
   P23-D0:
@@ -30,6 +31,27 @@ debug_gates:
     name: Debug qualification gate
     rule: all(P23-D0..P23-D4 == PASS)
 
+upstream_gate:
+  P23-P0:
+    name: Phase 2.2 Provenance Import and Upstream Gate Verification
+    imported_evidence:
+      phase2_2_frozen_verdict: PHASE2_2_FAIL_SPECTRAL_DETERMINATION
+      phase2_2_r1_verdict: PHASE2_2_R1_SPECTRAL_ISOLATION_FAIL
+      phase2_2_r1a_verdict: RECONCILIATION_PASS
+      delta_pair_definition: PER_SEED_RELATIVE_REDUCTION
+      auc_d_definition: 45_STEP_DISCRETE_SUM
+      numerical_reproducibility: PASS
+      provenance_consistency: PASS
+      r1a_p0_status: UNBLOCKED
+    current_status: PARTIAL_PASS_BLOCKED
+    required_to_open:
+      - source_artifact_sha256_and_repository_path
+      - phase2_2_r2_or_explicit_stop_record
+      - phase2_2_final_series_ledger
+    pass_rule: >
+      semantic evidence verified AND source artifact contract verified
+      AND Phase 2.2 series completion verified
+
 scientific_target:
   claim: >
     In the tested BellSync implementation and small-signal regime,
@@ -38,7 +60,7 @@ scientific_target:
   production_fit_window: NOT_FROZEN_HERE
   production_seed_set: NOT_AUTHORIZED_HERE
 
-forbidden_at_debug_stage:
+forbidden_at_current_stage:
   - PHASE2_3_MODE_MECHANISM_PASS
   - universal_lambda2_causality
   - stochastic_effect_size_estimation

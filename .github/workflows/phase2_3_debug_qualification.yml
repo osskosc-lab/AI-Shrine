@@ -1,4 +1,4 @@
-name: Phase 2.3 Debug Qualification
+name: Phase 2.3 Debug and Upstream Qualification
 
 on:
   pull_request:
@@ -8,12 +8,13 @@ on:
   push:
     branches:
       - "feat/bellsync-phase2-3-debug-qualification"
+      - "feat/bellsync-phase2-3-upstream-provenance"
 
 permissions:
   contents: read
 
 jobs:
-  deterministic-debug-qualification:
+  deterministic-debug-and-upstream-qualification:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
@@ -32,3 +33,9 @@ jobs:
         run: |
           python -m unittest -v test_p23_debug.py
           python p23_debug.py
+
+      - name: P23-P0 upstream provenance verification
+        working-directory: experiments/bellsync/phase2_3
+        run: |
+          python -m unittest -v test_p23_upstream.py
+          python p23_upstream.py

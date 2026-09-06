@@ -285,7 +285,7 @@ def qualify(
     blockers = list(failed)
 
     if not upstream_verified:
-        blockers.append("PHASE2_2_LEDGER_NOT_VERIFIED")
+        blockers.append("P23_P0_UPSTREAM_GATE_NOT_VERIFIED")
 
     return {
         "gates": gate_status,

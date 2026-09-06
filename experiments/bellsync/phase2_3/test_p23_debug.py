@@ -186,7 +186,7 @@ class P23DebugTests(unittest.TestCase):
             ]
         )
         self.assertIn(
-            "PHASE2_2_LEDGER_NOT_VERIFIED",
+            "P23_P0_UPSTREAM_GATE_NOT_VERIFIED",
             r["production_blockers"],
         )
 
