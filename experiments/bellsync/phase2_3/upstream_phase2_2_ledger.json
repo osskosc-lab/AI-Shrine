@@ -37,7 +37,7 @@
       "ci95_high": 0.0042468646550733735,
       "positive_seeds": 20,
       "num_seeds": 30,
-      "centroid_ratio_high_over_low": 1,
+      "centroid_ratio_high_over_low": 1.0,
       "centroid_max_abs_deviation": 4.440892098500626e-16
     },
     "PAIR_B_4REGULAR": {
@@ -50,7 +50,7 @@
       "ci95_high": 0.002955891536517993,
       "positive_seeds": 16,
       "num_seeds": 30,
-      "centroid_ratio_high_over_low": 1,
+      "centroid_ratio_high_over_low": 1.0,
       "centroid_max_abs_deviation": 3.3306690738754696e-16
     }
   },
@@ -61,10 +61,10 @@
     "numerical_reproducibility": "PASS",
     "pair_a_reported": 0.0018119107809711564,
     "pair_a_reproduced": 0.0018119107809711564,
-    "pair_a_abs_diff": 0,
+    "pair_a_abs_diff": 0.0,
     "pair_b_reported": 0.000816775760243488,
     "pair_b_reproduced": 0.000816775760243488,
-    "pair_b_abs_diff": 0,
+    "pair_b_abs_diff": 0.0,
     "numerical_tolerance": 1e-9,
     "provenance_consistency": "PASS",
     "provenance_basis": "phase2_2_r1_balanced_spectral_isolation.py",

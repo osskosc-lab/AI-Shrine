@@ -66,19 +66,25 @@ class P23UpstreamTests(unittest.TestCase):
         ):
             u.verify_r1_gate_consistency(broken)
 
-    def test_source_artifact_hashes_are_required(self):
+    def test_source_artifact_contract_verifies_registered_r1(self):
         result = u.verify_source_artifact_contract(
             self.ledger
         )
+        self.assertTrue(
+            result["source_artifact_contract_verified"]
+        )
+        self.assertEqual(result["blockers"], [])
+
+    def test_source_artifact_hash_mutation_is_rejected(self):
+        broken = copy.deepcopy(self.ledger)
+        broken["source_artifacts"]["script"]["sha256"] = "0" * 64
+
+        result = u.verify_source_artifact_contract(broken)
         self.assertFalse(
             result["source_artifact_contract_verified"]
         )
         self.assertIn(
-            "SOURCE_ARTIFACT_SHA256_MISSING:script",
-            result["blockers"],
-        )
-        self.assertIn(
-            "SOURCE_ARTIFACT_SHA256_MISSING:final_verdict",
+            "SOURCE_ARTIFACT_HASH_MISMATCH:script",
             result["blockers"],
         )
 

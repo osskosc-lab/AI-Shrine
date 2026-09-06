@@ -185,21 +185,45 @@ def verify_r1_gate_consistency(
 
 def verify_source_artifact_contract(
     ledger: dict[str, Any],
+    repo_root: str | Path | None = None,
 ) -> dict[str, Any]:
     blockers: list[str] = []
     artifacts = ledger["source_artifacts"]
+    root = (
+        Path(repo_root)
+        if repo_root is not None
+        else Path(__file__).resolve().parents[3]
+    )
 
     required = ("script", "final_verdict")
     for key in required:
         artifact = artifacts[key]
-        if not _is_sha256(artifact.get("sha256")):
+        declared = artifact.get("sha256")
+        path = artifact.get("repository_path")
+
+        if not _is_sha256(declared):
             blockers.append(
                 f"SOURCE_ARTIFACT_SHA256_MISSING:{key}"
             )
-        path = artifact.get("repository_path")
         if not isinstance(path, str) or not path.strip():
             blockers.append(
                 f"SOURCE_ARTIFACT_REPOSITORY_PATH_MISSING:{key}"
+            )
+            continue
+        if not _is_sha256(declared):
+            continue
+
+        resolved = root / path
+        if not resolved.is_file():
+            blockers.append(
+                f"SOURCE_ARTIFACT_NOT_FOUND:{key}"
+            )
+            continue
+
+        actual = hashlib.sha256(resolved.read_bytes()).hexdigest()
+        if actual != declared:
+            blockers.append(
+                f"SOURCE_ARTIFACT_HASH_MISMATCH:{key}"
             )
 
     return {
