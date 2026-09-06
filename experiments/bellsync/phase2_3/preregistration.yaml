@@ -1,0 +1,46 @@
+protocol:
+  name: BellSync Phase 2.3
+  subtitle: Spectral Mode Causality Audit
+  status: DEBUG_QUALIFICATION_ONLY
+  production_execution: BLOCKED
+
+claim_firewall:
+  debug_qualified_does_not_imply_mechanism_pass: true
+  stochastic_execution_authorized: false
+  confirmatory_execution_authorized: false
+  phase2_2_ledger_required_before_production: true
+
+debug_gates:
+  P23-D0:
+    name: Contract / manifest validator
+    must_pass: true
+  P23-D1:
+    name: Graph + eigenpair deterministic unit tests
+    must_pass: true
+  P23-D2:
+    name: Mode injection / reconstruction test
+    must_pass: true
+  P23-D3:
+    name: One-step dynamics audit
+    must_pass: true
+  P23-D4:
+    name: Replay + beta-zero sanity
+    must_pass: true
+  P23-D5:
+    name: Debug qualification gate
+    rule: all(P23-D0..P23-D4 == PASS)
+
+scientific_target:
+  claim: >
+    In the tested BellSync implementation and small-signal regime,
+    transverse mode contraction is consistent with Laplacian-eigenvalue-dependent coupling.
+  production_metric: NOT_FROZEN_HERE
+  production_fit_window: NOT_FROZEN_HERE
+  production_seed_set: NOT_AUTHORIZED_HERE
+
+forbidden_at_debug_stage:
+  - PHASE2_3_MODE_MECHANISM_PASS
+  - universal_lambda2_causality
+  - stochastic_effect_size_estimation
+  - post_hoc_parameter_retuning
+  - confirmatory_run
